@@ -1,0 +1,15 @@
+# -*- mode: org; -*-
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="Styles/big002/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="Styles/big002/css/big002.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="Styles/big002/css/hideshow.css"/>
+
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/jquery-1.11.0.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/jquery-ui-1.10.2.min.js"></script>
+
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/jquery.localscroll-min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/jquery.zclip.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/big002.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="Styles/big002/js/hideshow.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="Styles/lib/js/jquery.stickytableheaders.min.js"></script>
