@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to lauch a webpage with GitHub?</title>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="Styles/bigsol/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="Styles/bigsol/css/bigsol.css"/>
+<link rel="stylesheet" type="text/css" href="Styles/bigsol/css/hideshow.css"/>
+<script type="text/javascript" src="Styles/bigsol/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="Styles/bigsol/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="Styles/bigsol/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="Styles/bigsol/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="Styles/bigsol/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="Styles/bigsol/js/bigsol.js"></script>
+<script type="text/javascript" src="Styles/bigsol/js/hideshow.js"></script>
+<script type="text/javascript" src="Styles/lib/js/jquery.stickytableheaders.min.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">How to lauch a webpage with GitHub?</h1>
+
+<div id="outline-container-org723e221" class="outline-2">
+<h2 id="org723e221">Introduction</h2>
+<div class="outline-text-2" id="text-org723e221">
+<p>
+What is this document for?
+</p>
+
+<p>
+This document is for drafting an essay for HW2 of the summer course on scientific writing EMSE-7(4 or 3, that is)68
+</p>
+
+<p>
+The plan is to use the so-called bottom-up approach
+</p>
+
+<p>
+What is a bottom-up approach?
+</p>
+
+<p>
+In a bottom-up approach, the writer first lay out information coming to mind freely before grouping the information into the product like an essay or an article (is there a difference between an essay and an article?).
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org5d9b873" class="outline-2">
+<h2 id="org5d9b873">Brain storm</h2>
+<div class="outline-text-2" id="text-org5d9b873">
+</div>
+<div id="outline-container-org1485f61" class="outline-3">
+<h3 id="org1485f61">What does it mean by a github page here?</h3>
+<div class="outline-text-3" id="text-org1485f61">
+<p>
+A github page is a webpage lauched through github. It's free and reliable
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf73f2c8" class="outline-3">
+<h3 id="orgf73f2c8">How to launch a github page?</h3>
+<div class="outline-text-3" id="text-orgf73f2c8">
+<p>
+Check <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">creating a GitHub Pages site</a> on GitHub docs and <a href="https://pages.github.com">GitHub Pages</a> homepage to see information provided by Github.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2dfafca" class="outline-3">
+<h3 id="org2dfafca">Have you tried launching a webpage from github?</h3>
+<div class="outline-text-3" id="text-org2dfafca">
+<p>
+Yes
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf25d641" class="outline-3">
+<h3 id="orgf25d641">Any problems in the process?</h3>
+<div class="outline-text-3" id="text-orgf25d641">
+<p>
+When I made this webpage on the <a href="https://casesyh.github.io/universe/">Universe</a>, I only found GitHub Pages. What confused me there was how github recognizes the file to render into a webpage. At first I uploaded a file called universe.html. The webpage built from the repository didn't have the html rendered. Then I realized github looks for index.html. I created a file index.html in the repository. The webpage built from the repository rendered the content in index.html.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf1af4d2" class="outline-3">
+<h3 id="orgf1af4d2">What is a github?</h3>
+<div class="outline-text-3" id="text-orgf1af4d2">
+<p>
+To talk about github we need to first talk about git.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd803826" class="outline-3">
+<h3 id="orgd803826">What is git?</h3>
+<div class="outline-text-3" id="text-orgd803826">
+<p>
+Right, what is git?
+<a href="https://github.com/rksm/org-ai">https://github.com/rksm/org-ai</a>
+</p>
+
+<div class="AI" id="org9491470">
+<p>
+What is git?
+Git is a distributed version control system that is primarily used for source code management. It enables multiple developers or teams to work on the same project simultaneously, keeping track of changes made to the code, and facilitating collaboration. Git allows users to create, merge, and manage branches, making it easier to work on different features or bug fixes independently. It also provides features for code review, conflict resolution, and history tracking, which help maintain codebase integrity and enable efficient development workflows. Git is widely used in software development to manage code repositories and is known for its speed, reliability, and flexibility.
+</p>
+
+<p>
+[ME]: who invented git?
+Git was invented by Linus Torvalds, the creator of the Linux operating system, in 2005. Torvalds initially created Git to manage the development of the Linux kernel, as existing version control systems at the time did not meet the scalability and performance needs of the project. Since its inception, Git has gained popularity and is now widely used across various industries and open-source projects.
+</p>
+
+<p>
+[ME]:
+</p>
+
+</div>
+
+<p>
+You see, git was invented in 2005. That was fairly recent. It was invented by the inventor of the Linux operating system.
+</p>
+
+<p>
+<a href="https://github.com/rksm/org-ai">https://github.com/rksm/org-ai</a>
+</p>
+
+<p>
+#+BEGIN<sub>AI</sub>
+Tell me about the inventor of the Linux operating system as a person.
+</p>
+
+<p>
+The Linux operating system was not invented by a single person, but rather it is the result of the collaborative efforts of thousands of developers worldwide. However, the Linux kernel, which is the core component of the operating system, was initially created by Linus Torvalds.
+</p>
+
+<p>
+Linus Torvalds was born on December 28, 1969, in Helsinki, Finland. He showed an early interest in computers and began programming at a young age. Linus is often described as a reserved and humble person who values teamwork and collaboration.
+</p>
+
+<p>
+In 1991, while studying computer science at the University of Helsinki, Linus started working on an operating system kernel as a hobby project. He released the first version of the Linux kernel to the public, and it quickly gained attention from other developers who contributed to its development.
+</p>
+
+<p>
+Throughout the years, Linus has continued to oversee the development of the Linux kernel, taking an active role as the project's chief architect. He is known for his strong leadership skills and his ability to guide and manage the large community of developers working on Linux.
+</p>
+
+<p>
+Linus has been praised for his open and inclusive approach, encouraging people to contribute to the Linux project regardless of their backgrounds or experience levels. This philosophy has fostered a culture of openness, transparency, and collaboration within the Linux community.
+</p>
+
+<p>
+Over time, Linux has grown into one of the most successful and widely used operating systems globally, powering numerous devices ranging from servers and supercomputers to smartphones and embedded systems. Linus Torvalds' contributions to the development of Linux have been instrumental, and he is often celebrated as the father of Linux.
+</p>
+
+<p>
+In addition to his work on Linux, Linus is also known for his outspoken personality and direct communication style. His public emails and forum posts, often filled with colorful language, have gained attention and sometimes sparked debates and discussions within the technology community.
+</p>
+
+<p>
+Overall, Linus Torvalds is seen as an influential figure in the world of open-source software. His dedication, technical expertise, and leadership have played a pivotal role in the success and widespread adoption of Linux.
+</p>
+
+<p>
+[ME]: Tell me about github.
+</p>
+
+<p>
+GitHub is a web-based platform that provides a version control system and hosting service for software development projects. It allows developers to collaborate on projects and manage their code repositories using a distributed version control system called Git.
+</p>
+
+<p>
+Founded in 2008, GitHub quickly became one of the most popular platforms for developers to share and collaborate on open-source projects. It offers a wide range of features and tools that facilitate the development process.
+</p>
+
+<p>
+One of the key features of GitHub is its version control system. Git allows developers to track changes made to code over time, making it easier to manage and collaborate on projects. It enables multiple developers to work on the same project simultaneously without overwriting each other's code.
+</p>
+
+<p>
+GitHub also supports the concept of branches, which allows developers to create independent copies of their codebase to work on specific features or bug fixes. These branches can then be merged back into the main codebase once the changes are completed and tested.
+</p>
+
+<p>
+Another notable feature of GitHub is its issue tracking system. This system allows developers to create, assign, and track issues, bugs, and feature requests within a project. It serves as a centralized hub for discussions and communication around the project's development.
+</p>
+
+<p>
+Additionally, GitHub provides a platform for hosting code repositories. Developers can create public or private repositories to store and share their code. Public repositories are accessible to anyone, while private repositories can only be accessed by authorized collaborators.
+</p>
+
+<p>
+GitHub also offers various collaboration tools such as pull requests, which allow developers to propose and review code changes, and wikis, which allow project documentation to be maintained. It also provides integration with various development tools and services, making it easier to automate workflows and build continuous integration and deployment pipelines.
+</p>
+
+<p>
+In 2018, Microsoft acquired GitHub but has continued to operate it as an independent platform. GitHub remains a dominant and widely used platform for hosting and collaborating on software development projects, with millions of users and repositories spanning a diverse range of programming languages and projects.
+</p>
+
+<p>
+[ME]: Didn't know Microsoft acquired Github.
+</p>
+
+<p>
+Yes, Microsoft acquired GitHub in June 2018 for $7.5 billion. The acquisition led to some initial concerns and debates within the developer community about the future direction and independence of GitHub. However, Microsoft has pledged to keep GitHub as an independent platform and has even made several improvements and updates to enhance its functionality.
+</p>
+
+<p>
+Since the acquisition, Microsoft has focused on integrating GitHub with its own development tools and services, such as Azure, Visual Studio, and Microsoft Teams. This integration aims to provide a seamless experience for developers working with Microsoft's technologies.
+</p>
+
+<p>
+Overall, many developers and organizations continue to use GitHub and benefit from its features and services, even after Microsoft's acquisition. The impact of the acquisition has been relatively positive, and Microsoft's involvement has helped solidify GitHub's position as a leading platform for software development collaboration.
+</p>
+
+<p>
+[ME]: How was git created?
+Git was created by Linus Torvalds in 2005. At the time, Linus was working on the development of the Linux kernel and was frustrated with the existing version control systems available. He wanted a system that could handle the distributed and collaborative nature of the Linux kernel development process more efficiently.
+</p>
+
+<p>
+Thus, Torvalds began working on his own version control system, Git. He aimed to create a system that was fast, scalable, and could handle large software projects effectively. Git's design was influenced by the experience and lessons learned from using other version control systems like BitKeeper and Monotone.
+</p>
+
+<p>
+Git's development was driven by Linus's specific needs for managing the Linux kernel source code, but he also wanted it to be a general-purpose version control system that could be used by other developers and projects. He released it as an open-source project, allowing others to contribute to its development and use it for their own projects.
+</p>
+
+<p>
+Git's design is based on a distributed architecture, where each developer has their own copy of the entire codebase, including the complete history of changes. This distributed nature allows for better collaboration and allows developers to work offline and independently. Git uses a directed acyclic graph to track the history of changes, with each commit representing a snapshot of the entire project.
+</p>
+
+<p>
+The design principles and performance of Git quickly gained attention from the developer community. Git became widely adopted and is now one of the most popular version control systems used by developers around the world. Its success can be attributed to its speed, flexibility, and powerful features, which have made it a cornerstone for efficient and scalable software development workflows.
+</p>
+
+<p>
+[ME]: tell me about the story of github.
+</p>
+
+<p>
+The story of GitHub begins in 2007 with the founding of a company called Logical Awesome by Chris Wanstrath, Tom Preston-Werner, and PJ Hyett. Their initial goal was to create a platform for sharing code and collaborating on software projects. They soon realized that existing solutions, such as SourceForge and Bitbucket, were lacking in certain features and ease of use.
+</p>
+
+<p>
+During a Ruby conference in 2007, the founders introduced an early version of their project called "Gist." Gist allowed developers to share and collaborate on snippets of code. This prototype received positive feedback and encouraged the founders to expand their vision.
+</p>
+
+<p>
+In February 2008, Logical Awesome officially launched GitHub as a platform for code hosting and collaboration using the distributed version control system called Git, created by Linus Torvalds. GitHub quickly gained traction and popularity within the developer community due to its simplicity, elegant design, and extensive functionality.
+</p>
+
+<p>
+The founders focused on creating a platform that was user-friendly and fostered a social aspect, allowing developers to easily contribute to open-source projects and share their own code. They implemented features like the ability to fork a project (create a separate version for your own modifications) and a seamless way to propose changes through pull requests.
+</p>
+
+<p>
+As the platform grew, GitHub attracted millions of users, including individuals, open-source projects, and even large organizations. The collaborative nature and transparency of GitHub helped drive its success, as it allowed developers worldwide to work together and contribute to projects regardless of their location or organizational affiliation.
+</p>
+
+<p>
+In 2011, GitHub raised $100 million in funding, which further solidified its position as a leading platform for developers. Over the years, GitHub continued to expand its offerings, introducing new features to enhance collaboration, project management, and software development workflows.
+</p>
+
+<p>
+In 2018, Microsoft acquired GitHub for $7.5 billion, a move that initially raised concerns among some members of the developer community. However, Microsoft has maintained GitHub as an independent platform and has continued to invest in its development and integration with other Microsoft tools and services.
+</p>
+
+<p>
+Today, GitHub remains a central hub for developers, hosting millions of repositories covering a wide range of projects and programming languages. It continues to be a go-to platform for open-source collaboration, enterprise software development, and individual code sharing.
+</p>
+
+<p>
+[ME]: Tell me about the story of GitHub pages.
+GitHub Pages is a service provided by GitHub that allows users to create and host static websites directly from GitHub repositories. The story of GitHub Pages begins with the launch of GitHub in 2008, which focused on providing version control and collaboration features for developers.
+</p>
+
+<p>
+Initially, GitHub only offered code repository hosting, but as the platform grew, the founders and developers saw the need for a way to showcase and share documentation, project websites, and personal portfolios directly from GitHub repositories.
+</p>
+
+<p>
+In 2009, GitHub introduced the concept of GitHub Pages, which allowed users to create and host simple websites using the same version-controlled workflow they were already familiar with. Users could create a special branch called "gh-pages" in their repositories, and the contents of that branch would be automatically published as a website.
+</p>
+
+<p>
+GitHub Pages supported basic HTML, CSS, and JavaScript, allowing users to create static websites with ease. Over time, GitHub expanded the capabilities of GitHub Pages, introducing support for Jekyll, a popular static site generator, which made it even easier to create dynamic and blog-like websites.
+</p>
+
+<p>
+In 2016, GitHub made another significant update to GitHub Pages by introducing support for custom domains. Users could map their GitHub Pages websites to their own domain names, giving them more control over their website's branding and visibility.
+</p>
+
+<p>
+GitHub Pages quickly became a popular choice for developers to host personal blogs, project documentation, and even full-fledged websites. Its seamless integration with GitHub repositories and version control workflow made it a convenient and hassle-free option, especially for users already working with GitHub.
+</p>
+
+<p>
+Today, GitHub Pages continues to be widely used by individuals, open-source projects, and organizations to host and share their static websites. It remains a popular choice for developers looking for a free and easy way to publish their web content online.
+</p>
+
+<p>
+[ME]: #+END<sub>AI</sub>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga79c93b" class="outline-2">
+<h2 id="orga79c93b">Draft 1</h2>
+<div class="outline-text-2" id="text-orga79c93b">
+<div class="org-center">
+<p>
+<b><i>Launch a webpage with GitHub Pages</i></b>
+</p>
+
+<p>
+<i>Yuhao</i>
+</p>
+</div>
+
+
+<p>
+Github is a popular online platform for online code storage, sharing, collaboration, and version control. The second part of the name is hub. What about the first part of the name git?
+</p>
+
+<p>
+Git is a version control system invented in 2005. The inventor of git is Linus Torvalds, who created the kernel of the Linux open source operating system in 1991. Linus has since been overseeing the development of the Linux kernel as the chief architect. The development of the Linux operating systems takes an open and inclusive approach, allowing a global community of thousands of developers to contribute. The open source approach makes the development process more efficient and colaborative but it requires an efficient version control system. There were other version control systems available when the development of Linux kernel first started, but Linus wasn't satisfied with their efficiency. Eventually, Linus created a new version control system, git.
+</p>
+
+<p>
+GitHub is a web-based platform based on git. GitHub provides version control and hosting service for software projects. On GitHub developers can contribute to open source projects and share their own code. GitHub made it possible for developers from around the world to work together. Since being founded in Febuary 2008, GitHub has been growing into a central hub for the developers community, hosting millions of repositories for a wide range of projects and programming languages.
+</p>
+
+<p>
+Besides as a convenient platform for code sharing and project developing, since 2009, shortly after GitHub was founded, GitHub offers the users a feature called GitHub Pagees. With Github Pages the users can host free web pages through GitHub repositories.  GitHub Pages quickly become a popular option for developers to host personal blogs, project documentations, and other types of websites. The integration of GitHub page with GitHub repositories makes it convenient for users to use the version control flow.
+</p>
+
+<p>
+So how to launch a webpage through GitHub Pages? Check the instructions in  <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">creating a GitHub Pages site</a> on GitHub docs and <a href="https://pages.github.com">GitHub Pages</a> homepage. I launched a webpage <a href="https://casesyh.github.io/universe/">the Universe</a> by following the steps layed out in the instructions. What was confusing for me at first was how GitHub Pages recognizes with file in the repository to render into a webpage. I thought an html file with any file name would work. It turned out GitHub Pages recognizes a file called index.html as the file to render into a webpage. Otherwise, GitHub Pages would render the readme.md instead.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
